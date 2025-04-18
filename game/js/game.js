@@ -331,6 +331,7 @@ class Game {
             this.handleClick = this.handleClick.bind(this);
             this.gameLoop = this.gameLoop.bind(this);
             this.reset = this.reset.bind(this);
+            this.handleKeyDown = this.handleKeyDown.bind(this);
             
             this.canvas.addEventListener('click', this.handleClick);
             
@@ -344,6 +345,9 @@ class Game {
             // 立即绘制一次背景，确保画布不是黑的
             this.ctx.fillStyle = '#87CEEB';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            // 添加键盘按下事件监听器
+            document.addEventListener('keydown', this.handleKeyDown);
             
             console.log('游戏组件初始化完成');
         } catch (error) {
@@ -427,17 +431,40 @@ class Game {
         const y = event.clientY - rect.top;
         
         if (this.chicken.isPointInside(x, y)) {
-            // 播放小鸡叫声
-            this.audioManager.play('chicken');
-            // 创建新鸡蛋
-            const egg = this.createEgg(x, y);
-            // 播放下蛋音效
-            this.audioManager.play('egg');
-            this.eggs.push(egg);
+            this.triggerChickenAction();
             this.clickCount++;
         } else {
             console.log(`点击未命中小鸡。点击位置：(${x.toFixed(0)}, ${y.toFixed(0)})`);
         }
+    }
+
+    // 处理键盘按下事件
+    handleKeyDown(event) {
+        // 检查是否按下了空格键 (keyCode 32) 或 (key ' ')
+        if (event.key === ' ' || event.keyCode === 32) {
+            // 阻止空格键的默认行为（例如滚动页面）
+            event.preventDefault();
+            // 触发与点击小鸡相同的动作
+            this.triggerChickenAction();
+        }
+    }
+
+    // 触发小鸡动作的通用函数
+    triggerChickenAction() {
+        if (!this.isRunning || !this.chicken) return; // 确保游戏正在运行且小鸡存在
+
+        // 播放小鸡叫声
+        this.audioManager.play('chicken');
+        // 获取下蛋位置
+        const { x, y } = this.chicken.getEggPosition();
+        // 创建新鸡蛋
+        const egg = this.createEgg(x, y);
+        // 播放下蛋音效
+        this.audioManager.play('egg');
+        // 添加到鸡蛋列表
+        this.eggs.push(egg);
+        // 触发小鸡点击动画
+        this.chicken.onClick();
     }
 
     // 游戏主循环
