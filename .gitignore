@@ -1,0 +1,42 @@
+# Private individual user cursor rules
+.cursor/rules/_*.mdc
+
+# Documentation and templates
+xnotes/
+docs/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+
+# Debug files
+debug/
+*.log
+
+# Audio files (if they are large and should be managed separately)
+# game/audio/**/*.mp3
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Cursor specific
+.cursor/

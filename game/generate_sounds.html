@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>生成游戏音效</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .info {
+            margin: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>游戏音效生成器</h1>
+    <div class="info">
+        点击下面的按钮来生成并下载音效文件。<br>
+        生成的文件将自动下载到您的下载文件夹中。<br>
+        请将下载的文件移动到 game/audio/sfx/ 目录下。
+    </div>
+    <button onclick="generateAllSounds()">生成所有音效</button>
+    <script src="js/soundGenerator.js"></script>
+</body>
+</html> 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快乐小鸡</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="1080" height="720"></canvas>
+        <div class="game-ui">
+            <div class="score">得分：0</div>
+            <button class="reset-button">重新开始</button>
+        </div>
+    </div>
+    <!-- 先加载音效管理器 -->
+    <script src="js/audioManager.js"></script>
+    <!-- 再加载游戏主文件 -->
+    <script src="js/game.js"></script>
+</body>
+</html> 
